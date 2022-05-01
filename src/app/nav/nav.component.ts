@@ -19,3 +19,11 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
 }
+
+//TODO:
+// (1) Study Observables, what are breakpoints, how do they work?
+// The navigation component template: (nav.component.html)
+// (2) isHandset$ | async === true or false. Depending on the size! (Reponsiveness!)
+// Answer: isHandset is the mobile layout!
+// (3) fixedInViewport <-- to get the size properties of the component
+// (4) How isHandset$ and async work?
