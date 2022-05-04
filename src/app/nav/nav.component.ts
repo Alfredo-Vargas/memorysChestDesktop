@@ -27,3 +27,5 @@ export class NavComponent {
 // Answer: isHandset is the mobile layout!
 // (3) fixedInViewport <-- to get the size properties of the component
 // (4) How isHandset$ and async work?
+// (5) Study the map(result => result.matches)
+// (6) How breakpointObserver work as media queries?
