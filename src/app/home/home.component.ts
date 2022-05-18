@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { PhotosService } from '../photos.service';
+import { Photo} from '../photo.model';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
@@ -7,27 +9,30 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  cards = [];
+  photos: Photo[] = [];
+  photosForHandSet: Photo[] = [];
+  photosForWeb: Photo[] = [];
+
+  isHandset: boolean = false;
+
+  constructor(private breakpointObserver: BreakpointObserver,
+              private photosService: PhotosService) {}
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
-        return [
-          { title: 'Card 1', cols: 2, rows: 1 },
-          { title: 'Card 2', cols: 2, rows: 1 },
-          { title: 'Card 3', cols: 2, rows: 1 },
-          { title: 'Card 4', cols: 2, rows: 1 }
-        ];
+        return true;
       }
-
-      return [
-        { title: 'Card 1', cols: 1, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 1 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+      return false;
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  ngOnInit(){
+
+  }
+
 }
