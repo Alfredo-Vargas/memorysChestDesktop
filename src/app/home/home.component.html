@@ -1,9 +1,9 @@
 <div class="grid-container">
   <h1 class="mat-h1">Your photos</h1>
   <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card card-image" [style.background-image]="getFigure(card.figureName)">
+        <mat-card-header class="mat-app-background card-title">
           <mat-card-title>
             {{card.title}}
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">

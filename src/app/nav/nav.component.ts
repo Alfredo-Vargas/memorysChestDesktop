@@ -10,22 +10,22 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
       map(result => result.matches),
-      shareReplay()
+      shareReplay() // to avoid retransmit the whole pipe if another observer wants to retrieve this observable
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
 }
 
-//TODO:
-// (1) Study Observables, what are breakpoints, how do they work?
+//References:
+
+// (1) Breakpoints are the triggers in Material for how your layout responsive changes across device or viewport sizes.
+// Ref. https://material.angular.io/cdk/layout/api
+
 // The navigation component template: (nav.component.html)
 // (2) isHandset$ | async === true or false. Depending on the size! (Reponsiveness!)
-// Answer: isHandset is the mobile layout!
-// (3) fixedInViewport <-- to get the size properties of the component
-// (4) How isHandset$ and async work?
-// (5) Study the map(result => result.matches)
-// (6) How breakpointObserver work as media queries?
+// The async pipe gets the latest value of an observable
+
+// (5) Map(result => result.matches) Map: pass to result to another observable

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Photo} from './photo.model';
+// import { Photo} from './photo.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,8 +10,8 @@ export class PhotosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPhotos(): Observable<Photo[]> {
+  getPhotos(): Observable<any> {
     const url = 'http://localhost:3000/photos';
-    return this.httpClient.get<Photo[]>(url);
+    return this.httpClient.get<any>(url);
   }
 }
