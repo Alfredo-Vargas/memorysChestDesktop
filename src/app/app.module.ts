@@ -17,13 +17,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { EditComponent } from './edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SinglePhotoComponent } from './single-photo/single-photo.component';
+import { CreatePhotoComponent } from './create-photo/create-photo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    EditComponent
+    EditComponent,
+    SinglePhotoComponent,
+    CreatePhotoComponent
   ],
   imports: [
     BrowserModule,
