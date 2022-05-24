@@ -208,12 +208,17 @@
   "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   "version" "9.0.0"
 
-"@angular/core@^10.0.0 || ^11.0.0-0", "@angular/core@~10.2.4", "@angular/core@10.2.5", "@angular/core@9.0.0":
+"@angular/core@^10.0.0 || ^11.0.0-0", "@angular/core@~10.2.4", "@angular/core@10.2.5":
   "integrity" "sha512-krhOKNTj5XE92Rk9ASX5KmgTF72j7qT2PLVxrGEVjuUKjBY2XaK3TV0Kotq9zI3qa9WgeCrP/Njn6jlKQCCAEQ=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-10.2.5.tgz"
   "version" "10.2.5"
   dependencies:
     "tslib" "^2.0.0"
+
+"@angular/core@9.0.0":
+  "integrity" "sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w=="
+  "resolved" "https://registry.npmjs.org/@angular/core/-/core-9.0.0.tgz"
+  "version" "9.0.0"
 
 "@angular/forms@^10.0.0 || ^11.0.0-0", "@angular/forms@~10.2.4":
   "integrity" "sha512-EnycBx8q+DGmPaX4oSjPejJxx9u0TLb5+tpGxYitdOq/eBpQAAYyWKQGKXb1JB46rPVwJr34MmTltHgAN0zUSQ=="

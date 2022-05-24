@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PhotosService } from '../photos.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Photo } from '../photo.model';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -19,12 +18,21 @@ export class SinglePhotoComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    // this.photo = this.photosService.getPhoto(0);
+    this.photo = this.photosService.getPhoto(0);
+
+    this.route.paramMap.subscribe((params: Params) => {
+      console.log(params.get('id'));
+      this.photo = this.photosService.getPhoto(+params.get('id'));
+    });
+    console.log(this.photo);
+    this.router.navigate(['photos',this.photo.id]);
   }
 
   getFigure(photo: Photo): string {
-
-    return "";
+    // return 'url(' + 'http://localhost:3000/images/' + photo.img + '.jpg' + ')';
+    return 'http://localhost:3000/images/' + photo.img + '.jpg';
   }
-
+  onEditPhoto(photo: Photo): void {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
 }

@@ -1,19 +1,10 @@
-<mat-card class="dashboard-card card-image" [style.background-image]="getFigure(photo)">
-  <mat-card-header class="mat-app-background card-title">
-    <mat-card-title>
-      {{photo.geolocation}}
-      <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <!-- <button mat-menu-item (click)="onExpand()">Expand</button> -->
-        <button mat-menu-item>Edit</button>
-        <button mat-menu-item>Remove</button>
-      </mat-menu>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="dashboard-card-content">
-    <div>{{photo.camera}}</div>
+<mat-card class="example-card single-view">
+  <mat-card-content>
+    <img [src]="getFigure(photo)">
   </mat-card-content>
+  <mat-card-actions>
+    <button class="mat-raised-button" color="accent" (click)="onEditPhoto(photo)">Edit</button>
+    <button class="mat-raised-button" color="accent">Remove</button>
+  </mat-card-actions>
 </mat-card>
 

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +18,7 @@ import { EditComponent } from './edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SinglePhotoComponent } from './single-photo/single-photo.component';
 import { CreatePhotoComponent } from './create-photo/create-photo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,9 @@ import { CreatePhotoComponent } from './create-photo/create-photo.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

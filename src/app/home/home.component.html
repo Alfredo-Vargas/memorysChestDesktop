@@ -1,24 +1,17 @@
+<router-outlet></router-outlet>
 <div class="grid-container">
   <h1 class="mat-h1">Your photos</h1>
   <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows">
+    <mat-grid-tile routerLink="{{photo.id}}" *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows">
       <mat-card class="dashboard-card card-image" [style.background-image]="getFigure(photo.img)">
         <mat-card-header class="mat-app-background card-title">
           <mat-card-title>
             {{photo.geolocation}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item (click)="onExpand()">Expand</button>
-              <button mat-menu-item>Edit</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
+        <mat-card-subtitle class="mat-app-background card-subtitle">
           <div>{{photo.camera}}</div>
-        </mat-card-content>
+        </mat-card-subtitle>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

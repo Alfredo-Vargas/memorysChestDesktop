@@ -1,1 +1,17 @@
-<p>edit works!</p>
+<img [src]="getFigure(photo)">
+<div class="form-group">
+  <div class="form-group">
+    <label for="pgl">Photo Geolocation: </label>
+    <input type="text" class="form-control" [(ngModel)]="photo.geolocation" name="pgl" id="geoloc">
+  </div>
+  <div class="form-group">
+    <label for="pcamera">Camera used:</label>
+    <input type="text" class="form-control" [(ngModel)]="photo.camera" name="pcamera" id="photocamera">
+  </div>
+  <div class="form-group">
+    <label for="pdt">Date taken:</label>
+    <input type="date" class="form-control" [(ngModel)]="photo.dateTaken" name="pdt" id="photodate">
+  </div>
+  <button type="submit" class="mat-raised-button" color="accent" (click)="onChangeMetadata(photo)">Change photo metadata</button>
+</div>
+
