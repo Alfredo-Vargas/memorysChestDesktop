@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PhotosService } from '../photos.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Photo } from '../photo.model';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -19,6 +20,11 @@ export class SinglePhotoComponent implements OnInit {
 
   ngOnInit(): void {
     // this.photo = this.photosService.getPhoto(0);
+  }
+
+  getFigure(photo: Photo): string {
+
+    return "";
   }
 
 }

@@ -9,22 +9,27 @@ import { HttpClient } from '@angular/common/http';
 export class PhotosService {
 
   photos: Array<Photo> = [];
+  singlePhoto: Photo;
 
   constructor(private httpClient: HttpClient) { }
 
-  getPhotos(): Observable<any> {
+  getPhotos(): Observable<Array<Photo>> {
     const url = 'http://localhost:3000/photos';
-    return this.httpClient.get<any>(url);
+    return this.httpClient.get<Array<Photo>>(url);
   }
 
-  photos = this.getPhotos();
-
-  getBook(id: number): Photo {
-    const photo = this.photos.find(
-      (b) => {
-        return b.id === id;
+  getPhoto(id: number): Photo {
+    this.getPhotos().subscribe(
+      response => {
+        // this.photos = response.handsetPhotos;
+        const photo = this.photos.find(
+          (p) => {
+            return p.id === id;
+          }
+        );
+        this.singlePhoto = photo;
       }
-    );
-    return photo;
+    )
+    return this.singlePhoto;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PhotosService } from '../photos.service';
-// import { Photo} from '../photo.model';
+import { Photo} from '../photo.model';
 import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
@@ -12,9 +12,9 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 })
 export class HomeComponent implements OnInit {
 
-  cards = [];
-  cardsForHandSet = [];
-  cardsForWeb = [];
+  photos: Array<Photo> = [];
+  photosForHandSet: Array<Photo> = [];
+  photosForWeb: Array<Photo> = [];
   isHandset: boolean = false;
 
   constructor(private breakpointObserver: BreakpointObserver,
@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
     });
     this.photosService.getPhotos().subscribe(
       response => {
-        this.cardsForHandSet = response.handsetCards;
-        this.cardsForWeb = response.webCards;
+        this.photosForHandSet = response.handsetPhotos;
+        this.photosForWeb = response.webPhotos;
         this.loadCards();
       },
       error => {
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadCards(): void {
-    this.cards = this.isHandset? this.cardsForHandSet : this.cardsForWeb;
+    this.photos = this.isHandset? this.photosForHandSet : this.photosForWeb;
   }
 
   getFigure(figureName: string): string {

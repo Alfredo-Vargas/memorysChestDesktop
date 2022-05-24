@@ -1,9 +1,11 @@
 export class Photo {
   id: number;
+  img: string;
   geolocation: string;
   camera: string;
-  img: string;
   dateTaken: Date;
+  cols: number;
+  rows: number;
 
   constructor() {
     this.id = -1;

@@ -6,9 +6,9 @@ import { SinglePhotoComponent } from './single-photo/single-photo.component';
 
 const routes: Routes = [
   { path: 'photos', component: HomeComponent, children: [
-    {path: 'create', component: SinglePhotoComponent },
     {path: ':id', component: SinglePhotoComponent },
-    {path: ':id/edit', component: EditComponent }
+    {path: ':id/edit', component: EditComponent },
+    {path: 'create', component: SinglePhotoComponent }
   ]}
 ];
 
