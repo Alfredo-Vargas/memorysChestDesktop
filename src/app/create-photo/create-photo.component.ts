@@ -28,7 +28,6 @@ export class CreatePhotoComponent implements OnInit {
       (response) => {console.log("photo added: ", response);},
       (error) => console.log('error: ', error)
     );
-    // this.photosService.addNewPhoto(this.photo);
     // we clean the photo variable for next creation
     this.photo = {
       id : 1,
@@ -39,5 +38,6 @@ export class CreatePhotoComponent implements OnInit {
       cols : 1,
       rows : 1,
     };
+    // this.photosService.getPhotos();
   }
 }

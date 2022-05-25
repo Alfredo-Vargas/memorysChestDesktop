@@ -69,7 +69,5 @@ export class HomeComponent implements OnInit {
 
   onAddPhoto(): void {
     this.router.navigate(['create'], {relativeTo: this.route});
-    console.log("yolo");
-    // this.photosService.getPhotos();
   }
 }

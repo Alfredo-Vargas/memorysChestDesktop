@@ -47,10 +47,28 @@
     },
     {
       "id": 5,
-      "img": "",
-      "geolocation": "",
-      "camera": "",
-      "dateTaken": "2022-05-25T17:18:16.465Z",
+      "img": "figure5",
+      "geolocation": "Perulandia",
+      "camera": "Nokia3",
+      "dateTaken": "2022-05-12",
+      "cols": 2,
+      "rows": 1
+    },
+    {
+      "id": 6,
+      "img": "figure6",
+      "geolocation": "Thailand",
+      "camera": "Blackberry",
+      "dateTaken": "2022-05-04",
+      "cols": 2,
+      "rows": 1
+    },
+    {
+      "id": 7,
+      "img": "figure7",
+      "geolocation": "Chimbote",
+      "camera": "Samsung1",
+      "dateTaken": "2022-05-20",
       "cols": 2,
       "rows": 1
     }
@@ -98,6 +116,33 @@
       "geolocation": "Belgium",
       "camera": "Iphone5",
       "dateTaken": "2020/04/16",
+      "cols": 1,
+      "rows": 1
+    },
+    {
+      "id": 5,
+      "img": "figure5",
+      "geolocation": "Perulandia",
+      "camera": "Nokia3",
+      "dateTaken": "2022-05-12",
+      "cols": 1,
+      "rows": 1
+    },
+    {
+      "id": 6,
+      "img": "figure6",
+      "geolocation": "Thailand",
+      "camera": "Blackberry",
+      "dateTaken": "2022-05-04",
+      "cols": 1,
+      "rows": 1
+    },
+    {
+      "id": 7,
+      "img": "figure7",
+      "geolocation": "Chimbote",
+      "camera": "Samsung1",
+      "dateTaken": "2022-05-20",
       "cols": 1,
       "rows": 1
     }
