@@ -13,5 +13,7 @@ export class Photo {
     this.camera = '';
     this.img = '';
     this.dateTaken = new Date();
+    this.cols = 1;
+    this.rows = 1;
   }
 }

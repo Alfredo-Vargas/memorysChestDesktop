@@ -19,13 +19,3 @@ export class NavComponent {
 
 }
 
-//References:
-
-// (1) Breakpoints are the triggers in Material for how your layout responsive changes across device or viewport sizes.
-// Ref. https://material.angular.io/cdk/layout/api
-
-// The navigation component template: (nav.component.html)
-// (2) isHandset$ | async === true or false. Depending on the size! (Reponsiveness!)
-// The async pipe gets the latest value of an observable
-
-// (5) Map(result => result.matches) Map: pass to result to another observable

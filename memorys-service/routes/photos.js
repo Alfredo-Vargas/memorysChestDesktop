@@ -1,23 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
-var handsetPhotosArray = [
-  { id: 0, img: 'figure', geolocation: 'Peru', camera: 'Iphone5', dateTaken:new Date('2009/10/16'), cols: 2, rows: 1 },
-  { id: 1, img: 'figure1', geolocation: 'Brazil', camera: 'SamsungEdge11', dateTaken:new Date('2012/12/12'), cols: 2, rows: 1 },
-  { id: 2, img: 'figure2', geolocation: 'Italy', camera: 'Iphone5', dateTaken:new Date('2015/10/16'), cols: 2, rows: 1 },
-  { id: 3, img: 'figure3', geolocation: 'Portugal', camera: 'SamsungEdge11', dateTaken:new Date('2018/12/12'), cols: 2, rows: 1 },
-  { id: 4, img: 'figure4', geolocation: 'Belgium', camera: 'Iphone5', dateTaken:new Date('2020/04/16'), cols: 2, rows: 1 }
-];
+// Sync methods locks the server until instruction is performed
+var fullPhotosArrayRaw = fs.readFileSync("fullPhotosInfo.json");
+var fullPhotosArray= JSON.parse(fullPhotosArrayRaw);
 
-var webPhotosArray = [
-  { id: 0, img: 'figure', geolocation: 'Peru', camera: 'Iphone5', dateTaken:new Date('2009/10/16'), cols: 1, rows: 1 },
-  { id: 1, img: 'figure1', geolocation: 'Brazil', camera: 'SamsungEdge11', dateTaken:new Date('2012/12/12'), cols: 1, rows: 1 },
-  { id: 2, img: 'figure2', geolocation: 'Italy', camera: 'Iphone5', dateTaken:new Date('2015/10/16'), cols: 1, rows: 1 },
-  { id: 3, img: 'figure3', geolocation: 'Portugal', camera: 'SamsungEdge11', dateTaken:new Date('2018/12/12'), cols: 1, rows: 1 },
-  { id: 4, img: 'figure4', geolocation: 'Belgium', camera: 'Iphone5', dateTaken:new Date('2020/04/16'), cols: 1, rows: 1 }
-];
+var handsetPhotosArray = fullPhotosArray.handsetPhotos;
+var webPhotosArray = fullPhotosArray.webPhotos;
 
-/* GET users listing. */
+// GET photos (read)
 router.get('/', function(req, res, next) {
   let jsonResponse = {
     "handsetPhotos": handsetPhotosArray,
@@ -36,6 +28,7 @@ router.get('/:id', function(req, res, next) {
   }
 });
 
+// PATCH photos (modify)
 router.patch('/:id', function(req, res, next) {
   console.log("Patch was called!");
   let photoHandsetFound = handsetPhotosArray.find(
@@ -48,7 +41,6 @@ router.patch('/:id', function(req, res, next) {
       return photo.id === req.body.id;
     }
   );
-
   if (photoHandsetFound) {
     const photoHandset = {
       id: req.body.id,
@@ -69,17 +61,33 @@ router.patch('/:id', function(req, res, next) {
       cols: 1,
       rows: 1
     };
-    photoHandsetFound = photoHandset;
-    photoWebFound = photoWeb;
+    handsetPhotosArray[req.body.id] = photoHandset;
+    webPhotosArray[req.body.id] = photoWeb;
+
+    let jsonResponse = {
+      "handsetPhotos": handsetPhotosArray,
+      "webPhotos" : webPhotosArray
+    }
+    var dataToWrite = JSON.stringify(jsonResponse, null, 2);  // this options makes the json object readable
+    fs.writeFile('fullPhotosInfo.json', dataToWrite, finished);
+    function finished(err) {
+      console.log("all set.");
+    }
+    res.send(jsonResponse);
   }
-  res.send(photoWebFound);
+  else {
+    res.status(404).send("The photo with the given ID was not found");
+  }
 });
 
-
+// POST photos (add)
 router.post('/', function(req, res, next) {
+  console.log("POST was called\n");
+  console.log("The body of request is: ", req.body);
+  console.log("\n");
 
   const photoHandset = {
-    id: handsetPhotosArray.length + 1,
+    id: handsetPhotosArray.length,
     img: req.body.img,
     geolocation: req.body.geolocation,
     camera: req.body.camera,
@@ -89,7 +97,7 @@ router.post('/', function(req, res, next) {
   };
 
   const photoWeb = {
-    id: handsetPhotosArray.length + 1,
+    id: handsetPhotosArray.length,
     img: req.body.img,
     geolocation: req.body.geolocation,
     camera: req.body.camera,
@@ -98,10 +106,27 @@ router.post('/', function(req, res, next) {
     rows: 1
   };
 
+  console.log("The new element is:", photoHandset);
+  console.log("\n");
+
   handsetPhotosArray.push(photoHandset);
   webPhotosArray.push(photoWeb);
 
-  res.send(photoHandset);
+  console.log("After post(push):");
+  console.log(handsetPhotosArray);
+
+  let jsonResponse = {
+    "handsetPhotos": handsetPhotosArray,
+    "webPhotos" : webPhotosArray
+  }
+
+  var dataToWrite = JSON.stringify(jsonResponse, null, 2);  // this options makes the json object readable
+  fs.writeFile('fullPhotosInfo.json', dataToWrite, finished);
+  function finished(err) {
+    console.log("all set.");
+  }
+
+  res.send(jsonResponse);
 });
 
 module.exports = router;

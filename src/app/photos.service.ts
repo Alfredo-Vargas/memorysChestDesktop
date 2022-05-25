@@ -33,7 +33,14 @@ export class PhotosService {
 
   updatePhoto(photo: Photo): Observable<Photo> {
     let url = 'http://localhost:3000/photos/' + photo.id;
-    console.log("The url for the put request is: ", url);
+    console.log("Editing photo. The url for the patch request is: ", url);
     return this.httpClient.patch<Photo>(url, photo);
+  }
+
+  addNewPhoto(photo: Photo): Observable<Photo> {
+    const url = 'http://localhost:3000/photos';
+    console.log("Adding Photo. The url for the post request is: ", url);
+    console.log("Just before post", photo);
+    return this.httpClient.post<Photo>(url, photo);
   }
 }

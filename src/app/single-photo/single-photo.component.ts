@@ -21,11 +21,11 @@ export class SinglePhotoComponent implements OnInit {
     this.photo = this.photosService.getPhoto(0);
 
     this.route.paramMap.subscribe((params: Params) => {
-      console.log(params.get('id'));
+      console.log("Reading the parameter with id: ", params.get('id'));
       this.photo = this.photosService.getPhoto(+params.get('id'));
     });
-    console.log(this.photo);
-    this.router.navigate(['photos',this.photo.id]);
+    console.log("The current photo is: ", this.photo);
+    // this.router.navigate(['photos',this.photo.id]);
   }
 
   getFigure(photo: Photo): string {

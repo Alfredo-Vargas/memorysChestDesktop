@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <div class="grid-container">
-  <h1 class="mat-h1">Your photos</h1>
+  <button class="mat-raised-button" color="accent" (click)="onAddPhoto()">ADD</button>
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile routerLink="{{photo.id}}" *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows">
       <mat-card class="dashboard-card card-image" [style.background-image]="getFigure(photo.img)">

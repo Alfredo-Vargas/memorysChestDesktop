@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SinglePhotoComponent } from './single-photo/single-photo.component';
 import { CreatePhotoComponent } from './create-photo/create-photo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PhotosService } from './photos.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PhotosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

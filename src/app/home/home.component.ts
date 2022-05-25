@@ -4,6 +4,7 @@ import { PhotosService } from '../photos.service';
 import { Photo} from '../photo.model';
 import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,9 @@ export class HomeComponent implements OnInit {
   isHandset: boolean = false;
 
   constructor(private breakpointObserver: BreakpointObserver,
-              public photosService: PhotosService) {}
+              public photosService: PhotosService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   /** Based on the screen size, switch from standard to one column per row */
   // This observable is the one in charge of the responsiveness
@@ -40,7 +43,6 @@ export class HomeComponent implements OnInit {
         this.loadCards();
       }
     );
-
 
     this.photosService.getPhotos().subscribe(
       response => {
@@ -65,7 +67,9 @@ export class HomeComponent implements OnInit {
     return 'url(' + 'http://localhost:3000/images/' + img + '.jpg' + ')';
   }
 
-  onExpand(photoID: number): void {
-    console.log(photoID);
+  onAddPhoto(): void {
+    this.router.navigate(['create'], {relativeTo: this.route});
+    console.log("yolo");
+    // this.photosService.getPhotos();
   }
 }
