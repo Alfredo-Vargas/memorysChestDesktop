@@ -13,19 +13,22 @@ export class CreatePhotoComponent implements OnInit {
   selectedFile: File;
 
   constructor(private photosService: PhotosService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.photo = new Photo();
     console.log("ngOnInit create-photo was called");
-
-
   }
 
   onSubmitNewPhoto(): void {
     console.log("Creating a new photo: ", this.photo);
     this.photosService.addNewPhoto(this.photo).subscribe(
-      (response) => {console.log("photo added: ", response);},
+      (response) => {
+        console.log("photo added: ", response);
+        this.photosService.getPhotos();
+        this.router.navigate(['photos']);
+      },
       (error) => console.log('error: ', error)
     );
     // we clean the photo variable for next creation
@@ -38,6 +41,5 @@ export class CreatePhotoComponent implements OnInit {
       cols : 1,
       rows : 1,
     };
-    // this.photosService.getPhotos();
   }
 }

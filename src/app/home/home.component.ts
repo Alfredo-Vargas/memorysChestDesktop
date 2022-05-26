@@ -44,6 +44,11 @@ export class HomeComponent implements OnInit {
       }
     );
 
+    this.onGetPhotos();
+  }
+
+
+  onGetPhotos(): void {
     this.photosService.getPhotos().subscribe(
       response => {
         this.photosForHandSet = response.handsetPhotos;
@@ -56,7 +61,6 @@ export class HomeComponent implements OnInit {
         console.log("No photos");
       }
     );
-
   }
 
   loadCards(): void {

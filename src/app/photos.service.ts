@@ -19,7 +19,7 @@ export class PhotosService {
   }
 
   getPhoto(id: number): Photo {
-    let url = 'http://localhost:3000/photos/'+ id;
+    let url = 'http://localhost:3000/photos/' + id;
     this.httpClient.get<any>(url).subscribe(
       response => {
         this.singlePhoto = response;
@@ -42,5 +42,10 @@ export class PhotosService {
     console.log("Adding Photo. The url for the post request is: ", url);
     console.log("Just before post", photo);
     return this.httpClient.post<Photo>(url, photo);
+  }
+
+  deletePhoto(id: number): Observable<any> {
+    const url = 'http://localhost:3000/photos/' + id;
+    return this.httpClient.delete(url);
   }
 }

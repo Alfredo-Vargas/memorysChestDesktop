@@ -32,7 +32,16 @@ export class SinglePhotoComponent implements OnInit {
     // return 'url(' + 'http://localhost:3000/images/' + photo.img + '.jpg' + ')';
     return 'http://localhost:3000/images/' + photo.img + '.jpg';
   }
-  onEditPhoto(photo: Photo): void {
+  onEditPhoto(): void {
     this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+  onRemovePhoto(): void {
+    this.photosService.deletePhoto(this.photo.id).subscribe(
+      (response: any) => {
+        console.log('delete: ', response);
+        this.photosService.getPhotos();
+        this.router.navigate(['photos']);
+      }
+    );
   }
 }

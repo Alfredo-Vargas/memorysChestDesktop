@@ -71,7 +71,7 @@ router.patch('/:id', function(req, res, next) {
     var dataToWrite = JSON.stringify(jsonResponse, null, 2);  // this options makes the json object readable
     fs.writeFile('fullPhotosInfo.json', dataToWrite, finished);
     function finished(err) {
-      console.log("all set.");
+      console.log("The photo was modified.");
     }
     res.send(jsonResponse);
   }
@@ -83,8 +83,8 @@ router.patch('/:id', function(req, res, next) {
 // POST photos (add)
 router.post('/', function(req, res, next) {
   console.log("POST was called\n");
-  console.log("The body of request is: ", req.body);
-  console.log("\n");
+  /* console.log("The body of request is: ", req.body);
+  console.log("\n"); */
 
   const photoHandset = {
     id: handsetPhotosArray.length,
@@ -105,16 +105,16 @@ router.post('/', function(req, res, next) {
     cols: 1,
     rows: 1
   };
-
+/*
   console.log("The new element is:", photoHandset);
   console.log("\n");
-
+*/
   handsetPhotosArray.push(photoHandset);
   webPhotosArray.push(photoWeb);
-
+/*
   console.log("After post(push):");
   console.log(handsetPhotosArray);
-
+*/
   let jsonResponse = {
     "handsetPhotos": handsetPhotosArray,
     "webPhotos" : webPhotosArray
@@ -123,10 +123,40 @@ router.post('/', function(req, res, next) {
   var dataToWrite = JSON.stringify(jsonResponse, null, 2);  // this options makes the json object readable
   fs.writeFile('fullPhotosInfo.json', dataToWrite, finished);
   function finished(err) {
-    console.log("all set.");
+    console.log("New photo was included.");
   }
 
   res.send(jsonResponse);
+});
+
+
+router.delete('/:id', function(req, res) {
+  console.log("Deletion operation was called.\n");
+  const photo = handsetPhotosArray.find(p => p.id == parseInt(req.params.id));
+  if (!photo) {
+    res.status(404).send('The photo with the given ID was not found');
+  }
+  else {
+    // console.log("Element to be deleted is: \n", photo);
+    // console.log(photo);
+    const photoIndex = handsetPhotosArray.indexOf(photo);
+    handsetPhotosArray.splice(photoIndex, 1);
+    webPhotosArray.splice(photoIndex, 1);
+    res.send(photo);
+
+    let newData = {
+      "handsetPhotos": handsetPhotosArray,
+      "webPhotos" : webPhotosArray
+    }
+
+    /* console.log("The new array is:");
+    console.log(handsetPhotosArray); */
+    var dataToWrite = JSON.stringify(newData, null, 2);  // this options makes the json object readable
+    fs.writeFile('fullPhotosInfo.json', dataToWrite, finished);
+    function finished(err) {
+      console.log("Deletion completed.");
+    }
+  }
 });
 
 module.exports = router;
